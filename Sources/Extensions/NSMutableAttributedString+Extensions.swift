@@ -29,8 +29,17 @@ import UIKit
 
 internal extension NSMutableAttributedString {
  
+	static var systemPrimaryTextColor: UIColor {
+		if #available(iOS 13.0, *) {
+			return .label
+		} else {
+			// Same old color used for iOS 12 and earlier
+			return .black
+		}
+	}
+	
     @discardableResult
-    func bold(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = .black) -> NSMutableAttributedString {
+    func bold(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = systemPrimaryTextColor) -> NSMutableAttributedString {
         let attrs: [NSAttributedString.Key:AnyObject] = [
             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: fontSize),
             NSAttributedString.Key.foregroundColor : textColor
@@ -41,7 +50,7 @@ internal extension NSMutableAttributedString {
     }
     
     @discardableResult
-    func medium(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = .black) -> NSMutableAttributedString {
+    func medium(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = systemPrimaryTextColor) -> NSMutableAttributedString {
         let attrs: [NSAttributedString.Key:AnyObject] = [
             NSAttributedString.Key.font : UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.medium),
             NSAttributedString.Key.foregroundColor : textColor
@@ -52,7 +61,7 @@ internal extension NSMutableAttributedString {
     }
     
     @discardableResult
-    func italic(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = .black) -> NSMutableAttributedString {
+    func italic(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = systemPrimaryTextColor) -> NSMutableAttributedString {
         let attrs: [NSAttributedString.Key:AnyObject] = [
             NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: fontSize),
             NSAttributedString.Key.foregroundColor : textColor
@@ -63,7 +72,7 @@ internal extension NSMutableAttributedString {
     }
     
     @discardableResult
-    func normal(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = .black) -> NSMutableAttributedString {
+    func normal(_ text: String, fontSize: CGFloat = UIFont.preferredFont(forTextStyle: .body).pointSize, textColor: UIColor = systemPrimaryTextColor) -> NSMutableAttributedString {
         let attrs:[NSAttributedString.Key:AnyObject] = [
             NSAttributedString.Key.font : UIFont.systemFont(ofSize: fontSize),
             NSAttributedString.Key.foregroundColor : textColor
